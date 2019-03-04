@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=C:\Users\user\heroku\env"
+set "VIRTUAL_ENV=C:\Users\user\heroku\kajonet\env"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"
