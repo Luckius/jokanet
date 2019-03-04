@@ -23,6 +23,9 @@
          '%Y-%m-%d %H:%M:%S') }}">{{photomsg.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</time>
          {% if photomsg.user.username == current_user.username %}
              <a href="{{ url_for('delete_photomsg',photosmsg_id=photomsg.id) }}" class="view" >&nbsp &nbsp delete</a>
+             <a href="{{ url_for('delete_alleducationcmt') }}"class="view" >&nbsp &nbsp enable comments</a>
+             <p>if you enable comments all last topics comments will be cleared </p>
+             <br>
              <a href="{{url_for('home')}}" class="new-drphoto">&nbsp &nbsp add photo</a>
          {% endif %}
          <a href="{{ url_for('educationcmt') }}">comments</a>
@@ -45,11 +48,10 @@
 
 {% for file in drphoto_stream %}
 
-    <li><img style="max-height: 690px;max-width:690px; height:auto;
+    <li><img style="max-height: 690px;max-width:90%; height:auto;
                     width:100%;" src="{{ file.fp }}"></li>
     {% if file.user.username == current_user.username %}
-        <a href="{{ url_for('delete_drphoto',drphoto_id=file.id) }}" class="view" >&nbsp &nbsp Delete</a>
-        <a href="{{ url_for('delete_drphotos') }}" class="view" >&nbsp &nbsp Deleteee</a>
+        <a href="{{ url_for('delete_drphotos') }}" class="view" >&nbsp &nbsp delete</a>
     {% endif %}
     <a href="{{ url_for('educationcmt') }}">comments</a>
 {% endfor %}
