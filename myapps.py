@@ -111,7 +111,6 @@ def register():
                       email=form.email.data,
                       password=form.password.data,
         )
-        models.FTSUser.create(docid=myuser.id,content='\n'.join(myuser.username))
         return redirect(url_for('login'))
     return render_template('register.html', form = form)
 
@@ -1367,20 +1366,6 @@ def delete_politcsimagemsg(photosmsg_id):
 def videochat():
     return render_template('chat.html')
 
-
-
-
-
-@app.route('/mysearch', methods=['GET', 'POST'])
-def mysearch():
-    search = forms.MusicSearchForm(request.form)
-    if request.method == 'POST':
-        mysearch = (models.User.select(models.User.username)
-        .join(models.FTSsearch, on=(models.User.id == models.FTSsearch.docid))
-        .where(models.FTSsearch.match(search))
-        .dicts())
-        return mysearch
-    return render_template('index.html', form=search, mysearch=mysearch)
 
 
 
