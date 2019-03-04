@@ -63,13 +63,10 @@
               {% endif %}
 
               {% if current_user.is_authenticated %}
-                  <div>
                   <a href="{{ url_for('stream', username=current_user.username) }}">Following</a>
                   <a href="{{url_for('post')}}"class="new"> Create New Post</a>
                   <a href="{{url_for('forums')}}"class="comment"> JokaForums </a>
-                  <a href="{{ url_for('our_images') }}" class="topic-discused" >peaple's albums</a>
-
-                  </div>
+                  <a href="{{ url_for('our_images') }}" class="topic-discused" >peaple's albums</a
               {% endif %}
               </div>
             </nav>
