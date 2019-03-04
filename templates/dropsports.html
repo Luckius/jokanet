@@ -24,7 +24,7 @@
         </h2>
         <i class="clock"></i><time data-time="{{ photomsg.timestamp }}" class="distime" datetime="{{photomsg.timestamp.strftime(
          '%Y-%m-%d %H:%M:%S') }}">{{photomsg.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</time>
-         {% if photomsg.user.username == current_user.username %}
+         {% if photomsg.user.username == current_user.username or current_user.is_admin==True %}
              <a href="{{ url_for('delete_sportsimagemsg',photosmsg_id=photomsg.id) }}"
                        class="view" >&nbsp &nbsp delete</a>
              <a href="{{ url_for('delete_allsportscmt') }}"class="view" >&nbsp &nbsp enable comments</a>
@@ -53,8 +53,8 @@
 {% for file in oursportsimage_stream %}
     <li><img style="max-height: 690px;max-width:90%; height:auto;
                     width:100%;" src="{{ file.fp }}"></li>
-    {% if file.user.username == current_user.username %}
-        <a href="{{ url_for('delete_drphotos') }}" class="view" >&nbsp &nbsp delete</a>
+    {% if file.user.username == current_user.username or current_user.is_admin==True %}
+        <a href="{{ url_for('delete_sportsimage') }}" class="view" >&nbsp &nbsp delete</a>
     {% endif %}
     <a href="{{ url_for('sportscmt') }}">comments</a>
 {% endfor %}

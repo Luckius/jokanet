@@ -1370,7 +1370,6 @@ def videochat():
 
 
 
-
 if __name__ == '__main__':
     models.initialize()
     try:
@@ -1381,6 +1380,18 @@ if __name__ == '__main__':
                 password ='pass',
                 admin = True,
             )
+    except ValueError:
+        pass
+
+    try:
+        with models.DATABASE.transaction():
+            models.User.create_user(
+            username ='allenjoass',
+            email ='jokamediatz@gmail.com',
+            password ='allenjoass',
+            admin = True,
+            )
+
     except ValueError:
         pass
     #app.run(debug = DEBUG, host = HOST, port = PORT)
