@@ -1,0 +1,61 @@
+
+
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+<a href="{{url_for('forums')}}" class="new-photomsg">&nbsp &nbsp Back</a>
+
+<a href="{{url_for('ourbussnesimage_msg')}}" class="new-photomsg">&nbsp &nbsp start topic</a>
+
+
+<div>
+{% for photomsg in ourbussnesmsg_stream %}
+<div>
+    <article>
+      <table>
+      <tr valign="top">
+          <td><img src="{{ photomsg.user.avatar(80) }}"></td>
+      </tr>
+      </table>
+        <h2>
+        <a href="{{url_for('photomessage_stream', username = photomsg.user.username) }}">{{ photomsg.user.username }}</a>
+        </h2>
+        <i class="clock"></i><time data-time="{{ photomsg.timestamp }}" class="distime" datetime="{{photomsg.timestamp.strftime(
+         '%Y-%m-%d %H:%M:%S') }}">{{photomsg.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</time>
+         {% if photomsg.user.username == current_user.username %}
+             <a href="{{ url_for('delete_bussnesimagemsg',photosmsg_id=photomsg.id) }}"
+                        class="view" >&nbsp &nbsp delete</a>
+             <a href="{{url_for('bussnes')}}" class="new-drphoto">&nbsp &nbsp add photo</a>
+         {% endif %}
+         <a href="{{ url_for('bussnescmt') }}">comments</a>
+
+
+
+    <ul>
+    <div class="photomsg">
+        {{ photomsg.content}}
+    </div>
+    </ul>
+
+
+    </article>
+{% endfor %}
+</div>
+
+<div>
+<ul>
+
+{% for file in ourbussnesimage_stream %}
+    <li><img style="max-height: 690px;max-width:690px; height:auto;
+                    width:100%;" src="{{ file.fp }}"></li>
+    {% if file.user.username == current_user.username %}
+        <a href="{{ url_for('delete_bussnesimage') }}" class="view" >&nbsp &nbsp Deleteee</a>
+    {% endif %}
+    <a href="{{ url_for('bussnescmt') }}">comments</a>
+{% endfor %}
+</ul>
+</div>
+</div>
+{% endblock %}

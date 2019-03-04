@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% for user in allusers %}
+    {% if current_user.is_admin == True %}
+        <article>
+        <h2>
+        <p>No:</p>
+        {{ user.id }}
+        <ul>
+          <p>Name:</p>
+        <li><a href="{{url_for('stream', username = user.username) }}">{{ user.username }}</a></li><br>
+        <p>Email:</p>
+        <li>{{ user.email }}</li><br>
+        <p>Registered on:</p>
+        <li>{{ user.joined_at }}</li><br>
+        <p>Staff member:</p>
+        <li>{{ user.is_admin }}</li><br>
+        </ul>
+        </h2>
+        </article>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

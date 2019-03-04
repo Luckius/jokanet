@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_field %}
+
+{% block content %}
+<form class="form form-horizontal col-md-12" method="post" role="form">
+    {{ form.csrf_token }}
+    {{ form.name.label }}
+        <button type='submit' class="btn btn-primary" id='submit'>Submit</button>
+</form>
+
+{% endblock %}
+
+
+

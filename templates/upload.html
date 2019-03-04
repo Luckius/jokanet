@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_field %}
+
+
+{% block content %}
+<form method="POST" action="{{ url_for('predict') }}" enctype="multipart/form-data">
+    <label for="file-input" class="custom-file-upload">
+        <i class="fa fa-cloud-upload"></i> Upload Image
+    </label>
+    <input  id="file-input" name=file type="file" align="center" onchange="this.form.submit();">
+    <button type = "submit" id = "submit">Post!</button>
+</form>
+{% endblock %}
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flask App</title>
+        {{ dropzone.load() }}
+        {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
+    </head>
+    <body>
+        <h1>Hello from Flask!</h1>
+        {{ dropzone.create(action_view='index') }}
+    </body>
+</html>
+
+
+
+#lines for photo uploading and displaying
+basedir = os.path.abspath(os.path.dirname(__file__))
+UPLOAD_FOLDER = '/Users/user/PycharmProjects/flask_app/static/img/'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'tiff'])
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+@app.route('/uploads')
+def uploads():
+    return render_template("upload.html")
+
+@app.route('/predict/', methods=['POST', 'GET'])
+def predict():
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(basedir, app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file', filename=filename))
+    return '''
+    <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form action="" method=post enctype=multipart/form-data>
+      <p><input type=file name=file>
+         <input type=submit value=Upload>
+    </form>
+    '''
+
+
+@app.route('/show/<filename>')
+def uploaded_file(filename):
+    return render_template('clasify.html', filename=filename)
+
+@app.route('/uploads/<filename>')
+def send_file(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
+
+
+#end of uploading photo
+

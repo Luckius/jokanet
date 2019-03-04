@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% for comment in comment_stream %}
+ <article>
+        <h2>
+           <a href="{{url_for('comment_stream', username = comment.user.username) }}">{{ comment.user.username }}</a>
+        </h2>
+        <i class="clock"></i><time data-time="{{ comment.timestamp }}" class="distime" datetime="{{comment.timestamp.strftime(
+         '%Y-%m-%d %H:%M:%S') }}">{{comment.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</time>
+        <a href="{{ url_for('view_comment',comment_id=comment.id) }}" class="view" >&nbsp &nbsp View</a>
+        <div class="comment">
+            {{ comment.content }}
+        </div>
+    </article>
+{% endfor %}
+{% endblock %}

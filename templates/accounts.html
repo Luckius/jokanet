@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data">
+     {{ form.hidden_tag() }}
+     {{ form.photo }}
+     {% for error in form.photo.errors %}
+         <span style="color: red;">{{ error }}</span>
+     {% endfor %}
+     {{ form.submit }}
+</form>
+
+<!--{% for file in allfile_url %}
+    {{ file.user.username }}
+    <li><img style="max-height: 390px;" src="{{ file.fp }}"/></li>
+{% endfor %}-->
+
+{% endblock %}

@@ -1,0 +1,18 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+  <div class="forums">JokaForums</div>
+  <div class forum>
+  <ul>
+    <li><a href="{{url_for('ourgames')}}" class="forum">&nbsp &nbsp intertaiment forum</a></li><br>
+    <li><a href="{{url_for('oursports')}}" class="forum">&nbsp &nbsp sports & games forum</a></li><br>
+    <li><a href="{{url_for('ourbussnes')}}" class="forum">&nbsp &nbsp interprenuarship
+                                                                 & bussnes forum</a></li><br>
+    <li><a href="{{url_for('ourpolitcs')}}" class="forum">&nbsp &nbsp politcs forum</a></li><br>
+    <li><a href="{{url_for('results')}}" class="forum">&nbsp &nbsp education forum</a></li><br>
+  </ul>
+  </div>
+
+{% endblock %}

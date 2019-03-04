@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+  &nbsp&nbsp&nbsp
+  &nbsp&nbsp&nbsp&nbsp&nbsp
+  <a href="{{url_for('message')}}" class="post-new-message">Post new message</a>
+
+{% for message in message_stream %}
+    <article>
+      <h2>
+        <table>
+          <tr valign="top">
+            <td><img src="{{ message.user.avatar(80) }}"></td>
+          </tr>
+        </table>
+        <a href="{{url_for('message_stream', username = message.user.username) }}">{{ message.user.username }}</a>
+      </h2>
+      <i class="clock"></i><time data-time="{{ message.timestamp }}" class="distime" datetime="{{message.timestamp.strftime(
+        '%Y-%m-%d %H:%M:%S') }}">{{message.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</time>
+        {% if (message.user.username == current_user.username) %}
+            <a href="{{ url_for('delete_message',message_id=message.id) }}" class="views" >&nbsp &nbsp Delete</a>
+        {% endif %}
+        <div class="message">
+            {{ message.content }}
+        </div>
+      </article>
+{% endfor %}
+{% endblock %}

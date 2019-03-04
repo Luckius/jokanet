@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Flask messsege flashing</title>
+    </head>
+    <body>
+
+        {% with message = get_flashed_messeges() %}
+            {% if messages %}
+                <ul>
+                    {% for message in massages() %}
+                    <li>{{message}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <h1>Flask message Flashing Example</h1>
+        <p>Do you want to <a href = "{{url_for('login'}}">
+            <b>log in ?</b></a></p>
+    </body>
+</html>

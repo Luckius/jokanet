@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_field %}
+
+{% block content %}
+{% for pos in my_posts %}
+
+    <article>
+        <h6>
+            Post by <a href="{{ url_for('stream', username=pos.user.username)}}">
+                        {{ pos.user.username}}
+                    </a>
+            <span style="float:right; clear:right; ">at {{ pos.timestamp.strftime('%d-%m-%Y %H:%M')}}</span>
+
+        </h6>
+
+        <div class='pos'>
+
+            <div style="width: 100%; display: inline-block;">
+                <h4>
+                    <a href="{{ url_for('singlepost', post=post.id) }}">
+{{ pos.content}} {{ pos.comment }} </a>
+                </h4>
+
+            </div>
+
+        </div>
+        <hr>
+    </article>
+
+    <!-- comment section -->
+
+    <form class="form form-horizontal col-md-12" method="post" role="form">
+
+    {{ form.hidden_tag() }}  <!-- Renders hidden fields inside of a hidden <div>. -->
+    {% for field in form %} <!-- it will help us loop through the elements in our forms.py -->
+        {{ render_field(field) }} <!-- We used the maco we created to render the feild -->
+    {% endfor %}
+    <br>
+    <br>
+        <button type='submit' class="btn btn-primary" id='submit'>Submit</button>
+</form>
+{% endfor %}
+{% endblock %}

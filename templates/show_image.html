@@ -1,0 +1,33 @@
+
+{% extends "layout.html" %}
+
+
+
+{% block content %}
+
+<a href="{{ url_for('my_album') }}" class="topic-discused" >&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp
+                                    My album</a>
+
+
+{% for image in images_stream %}
+    <article>
+        <h2>
+            <table>
+            <tr valign="top">
+                <td><img src="{{ image.user.avatar(80) }}"></td>
+            </tr>
+            </table>
+        <a href="{{url_for('stream', username = image.user.username) }}">{{ image.user.username }}</a>
+        </h2>
+        <i class="clock"></i><time data-time="{{ image.timestamp }}" class="distime" datetime="{{image.timestamp.strftime(
+         '%Y-%m-%d %H:%M:%S') }}">{{image.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</time>
+
+        <div class="post">
+          <li><img style="max-height: 690px;max-width:690px; height:auto;
+                          width:100%;" src="{{ image.fp }}"/></li>
+        </div>
+    </article>
+
+
+{% endfor %}
+{% endblock %}

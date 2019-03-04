@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>404</h1>
+
+<h1>&nbsp&nbspHooh sorry {{current_user.username}}, that page doesn't exist.</h1>
+
+<h1><a href="{{ url_for('index') }}">&nbsp&nbsp All chat posts</a></h1>
+{% endblock %}

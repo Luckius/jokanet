@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_field %}
+
+
+{% block content %}
+    <h1
+       class="images"><img src="{{ url_for('send_file', filename=filename) }}"  width="800" height="500"
+                           alt="Computer Hope">
+    </h1>
+
+
+{% for comment in clasify %}
+    <article>
+        <h2>
+           <a href="{{url_for('clasify', username = comment.user.username) }}">{{ comment.user.username }}</a>
+        </h2>
+        <i class="clock"></i><time data-time="{{ comment.timestamp }}" class="distime" datetime="{{comment.timestamp.strftime(
+         '%Y-%m-%d %H:%M:%S') }}">{{comment.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</time>
+        <a href="{{ url_for('view_comment',comment_id=comment.id) }}" class="view" >&nbsp &nbsp View</a>
+            {% if current_user.is_authenticated %}
+                {% if user == current_user %}
+                    <a href="{{ url_for('delete_post', post_id=post.id) }}" class="view" >&nbsp|&nbsp &nbsp Delete</a>
+                {% endif %}
+            {% endif %}
+        <div class="comment">
+            {{ comment.content }}
+
+        </div>
+    </article>
+{% endfor %}
+{% endblock %}
