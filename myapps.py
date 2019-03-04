@@ -1099,6 +1099,77 @@ def delete_politcscmt(comment_id):
 
 
 
+#delete all comments
+
+@app.route('/delete_alleducationcmt')
+@login_required
+def delete_alleducationcmt():
+    try:
+        my_alleducationcmt = models.Comment.delete()
+    except models.Comment.DoesNotExist:
+        abort(404)
+    my_alleducationcmt.execute()
+    #post.execute()
+    flash("All comments has successfully been deleted.", "success")
+    return redirect(url_for('educationcmt',my_alleducationcmt=my_alleducationcmt))
+
+
+
+@app.route('/delete_allgamescmt')
+@login_required
+def delete_allgamescmt():
+    try:
+        my_allgamescmt = models.Gamescmtd.delete()
+    except models.Gamescmtd.DoesNotExist:
+        abort(404)
+    my_allgamescmt.execute()
+    #post.execute()
+    flash("All comments has successfully been deleted.", "success")
+    return redirect(url_for('gamescmt',my_allgamescmt=my_allgamescmt))
+
+
+
+
+@app.route('/delete_allbussnescmt')
+@login_required
+def delete_allbussnescmt():
+    try:
+        my_allbussnescmt = models.Bussnescmtd.delete()
+    except models.Bussnescmtd.DoesNotExist:
+        abort(404)
+    my_allbussnescmt.execute()
+    #post.execute()
+    flash("All comments has successfully been deleted.", "success")
+    return redirect(url_for('bussnescmt',my_allbussnescmt=my_allbussnescmt))
+
+
+
+@app.route('/delete_allpolitcscmt')
+@login_required
+def delete_allpolitcscmt():
+    try:
+        my_allpolitcscmt = models.Politcscmtd.delete()
+    except models.Politcscmtd.DoesNotExist:
+        abort(404)
+    my_allpolitcscmt.execute()
+    #post.execute()
+    flash("All comments has successfully been deleted.", "success")
+    return redirect(url_for('politcscmt',my_allpolitcscmt=my_allpolitcscmt))
+
+
+
+@app.route('/delete_allsportscmt')
+@login_required
+def delete_allsportscmt():
+    try:
+        my_allsportscmt = models.Sportscmtd.delete()
+    except models.Sportscmtd.DoesNotExist:
+        abort(404)
+    my_allsportscmt.execute()
+    #post.execute()
+    flash("All comments has successfully been deleted.", "success")
+    return redirect(url_for('sportscmt',my_allsportscmt=my_allsportscmt))
+
 
 
 
