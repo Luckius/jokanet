@@ -46,9 +46,9 @@ app.config['SECRET_KEY'] = 'luckiusevodiuskajokarutakararwagojobaomuhaya'
 
 
 
-DEBUG = True
-PORT = 8000
-HOST = 'localhost'
+#DEBUG = True
+#PORT = 8000
+#HOST = 'localhost'
 
 
 app.secret_key = 'auoesh,jahskd,alkjds,k_swekdius'
@@ -1394,6 +1394,6 @@ if __name__ == '__main__':
 
     except ValueError:
         pass
-    app.run(debug = DEBUG, host = HOST, port = PORT)
+    #app.run(debug = DEBUG, host = HOST, port = PORT)
     #socketio.run(app, debug=DEBUG, host=HOST, port=PORT)
     #app.run(debug=True)
